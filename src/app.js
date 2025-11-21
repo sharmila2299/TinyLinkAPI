@@ -11,5 +11,5 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: true }));
-app.use("/health", healthCheckRouter);
+app.use("/healthz", healthCheckRouter);
 export default app;

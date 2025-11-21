@@ -25,13 +25,5 @@ const heartBeatService = asyncHandler(async (req, res) => {
   }
 });
 
-const cronHealthBeat = async () => {
-  try {
-    const healthbeat = getHealthBeatData();
-    console.log("Cron Health Check:", JSON.stringify(healthbeat));
-  } catch (error) {
-    console.log("Cron health check failed:", error);
-  }
-};
 
-export { heartBeatService, cronHealthBeat };
+export { heartBeatService};
