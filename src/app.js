@@ -2,16 +2,24 @@ import express from "express";
 import cors from "cors";
 import healthCheckRouter from "./routes/healthCheck.route.js";
 import linksRouter from "./routes/links.route.js";
+import { redirectLink } from "./controllers/links.controller.js";
+
 const app = express();
+
 app.use(express.json());
+
 const corsOptions = {
   origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
-app.use(cors(corsOptions));
 
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
+
 app.use("/healthz", healthCheckRouter);
 app.use("/api/links", linksRouter);
+
+app.get("/:code", redirectLink);
+
 export default app;

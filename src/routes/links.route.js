@@ -3,7 +3,6 @@ import {
   getLinks,
   getLinkStats,
   deleteLink,
-  redirectLink,
 } from "../controllers/links.controller.js";
 
 import { createLinkValidator } from "../validators/links.validator.js";
@@ -11,10 +10,9 @@ import { Router } from "express";
 
 const router = Router();
 
-router.route("/create").post(createLinkValidator, createLink);
-router.route("/all").get(getLinks);
-router.route("/stats/:code").get(getLinkStats);
-router.route("/delete/:code").delete(deleteLink);
-router.route("/:code").get(redirectLink);
+router.post("/", createLinkValidator, createLink);
+router.get("/", getLinks);
+router.get("/:code", getLinkStats);
+router.delete("/:code", deleteLink);
 
 export default router;
